@@ -1,11 +1,22 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import type { ListingFilters, ListingSummary } from "./types";
+import type { Listing, ListingFilters, ListingSummary, Offer } from "./types";
 
 export const api = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_URL }),
   tagTypes: ["Listing", "Offer"],
   endpoints: (builder) => ({
+    getListing: builder.query<Listing, string>({
+      query: (id) => `/listings/${encodeURIComponent(id)}`,
+      providesTags: ["Listing"],
+    }),
+    getOffers: builder.query<Offer[], string>({
+      query: (listingId) => ({
+        url: "/offers",
+        params: { listingId, _sort: "-createdAt" },
+      }),
+      providesTags: ["Offer"],
+    }),
     // GET /listings?category=Cars&city=Valencia&price:lte=500&_sort=-publishedAt
     getListings: builder.query<ListingSummary[], ListingFilters>({
       query: ({ category, city, maxPrice }) => ({
@@ -19,4 +30,4 @@ export const api = createApi({
   }),
 });
 
-export const { useGetListingsQuery } = api;
+export const { useGetListingsQuery, useGetListingQuery, useGetOffersQuery } = api;
