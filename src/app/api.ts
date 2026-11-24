@@ -10,6 +10,21 @@ export const api = createApi({
       query: (id) => `/listings/${encodeURIComponent(id)}`,
       providesTags: ["Listing"],
     }),
+    updatePrice: builder.mutation<Listing, { id: string; price: number }>({
+      query: ({ id, price }) => ({
+        url: `/listings/${encodeURIComponent(id)}`,
+        method: "PATCH",
+        body: { price },
+      }),
+      invalidatesTags: (_result, error) => error ? [] : ["Listing"],
+    }),
+    deleteListing: builder.mutation<void, string>({
+      query: (id) => ({
+        url: `/listings/${encodeURIComponent(id)}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: (_result, error) => error ? [] : ["Listing"],
+    }),
     createListing: builder.mutation<Listing, NewListing>({
       query: (body) => ({ url: "/listings", method: "POST", body }),
       invalidatesTags: ["Listing"],
@@ -44,4 +59,6 @@ export const {
   useGetOffersQuery,
   useCreateOfferMutation,
   useCreateListingMutation,
+  useUpdatePriceMutation,
+  useDeleteListingMutation,
 } = api;
