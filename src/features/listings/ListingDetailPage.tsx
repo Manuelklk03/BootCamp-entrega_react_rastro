@@ -4,12 +4,15 @@ import { useGetListingQuery } from "../../app/api";
 import { getErrorMessage } from "../../app/apiError";
 import { CATEGORY_LABELS, formatPrice } from "../../app/labels";
 import { Loading } from "../../components/ui/Loading";
+import { OfferForm } from "../offers/OfferForm";
+import { useCurrentUser } from "../users/CurrentUserContext";
 import { OfferList } from "../offers/OfferList";
 import { StatusBadge } from "./StatusBadge";
 import styles from "./ListingDetailPage.module.css";
 
 export function ListingDetailPage() {
   const { id } = useParams();
+  const { user } = useCurrentUser();
   const { currentData: listing, error, isFetching } = useGetListingQuery(id ?? skipToken);
 
   if (isFetching && !listing) return <Loading />;
@@ -43,6 +46,11 @@ export function ListingDetailPage() {
           </dl>
         </article>
         <aside className={styles.side}>
+          {listing.seller.id !== user.id && (
+            listing.status === "AVAILABLE"
+              ? <OfferForm key={listing.id} listingId={listing.id} />
+              : <p className="loading">Este anuncio ya no admite ofertas.</p>
+          )}
           <OfferList listingId={listing.id} />
         </aside>
       </div>
