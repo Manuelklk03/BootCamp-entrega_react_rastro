@@ -1,5 +1,35 @@
 # Entrega: la web de Rastro con React
 
+## Arranque local con json-server
+
+Instala las dependencias. Si es tu primera vez en este clon, copia `.env.example` a `.env`. El valor de `VITE_API_URL` debe ser `http://localhost:3001`.
+
+```powershell
+npm install
+Copy-Item .env.example .env
+npm run api
+```
+
+En otra terminal, ejecuta `npm run dev` y abre la dirección que muestra Vite, normalmente `http://localhost:5173`.
+
+## Capturas de la versión con json-server
+
+### Listado filtrado
+
+![Listado de móviles por hasta 200 €](docs/capturas/listado.png)
+
+### Ficha como comprador
+
+![Ficha del Seat Ibiza con el formulario y la lista de ofertas](docs/capturas/comprador.png)
+
+### Ficha como vendedor
+
+![Ficha del Seat Ibiza con los controles para cambiar el precio y borrar](docs/capturas/vendedor.png)
+
+### Publicar un anuncio
+
+![Formulario para publicar un anuncio](docs/capturas/publicar.png)
+
 ## Objetivo
 
 Es la **segunda entrega de React** y también es **obligatoria**. Hazla después de la de FitVal: reutiliza mucho de lo que hiciste allí.
