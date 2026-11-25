@@ -26,14 +26,7 @@ export function NewListingPage() {
 
   async function publish(data: ListingForm) {
     try {
-      const created = await createListing({
-        ...data,
-        status: "AVAILABLE",
-        views: 0,
-        publishedAt: new Date().toISOString(),
-        seller: user,
-        attributes: {},
-      }).unwrap();
+      const created = await createListing({ ...data, sellerId: user.id }).unwrap();
       navigate(`/listings/${encodeURIComponent(created.id)}`);
     } catch (error) {
       setError("root", { message: getErrorMessage(error) });

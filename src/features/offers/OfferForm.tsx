@@ -20,13 +20,7 @@ export function OfferForm({ listingId }: { listingId: string }) {
 
     setError(null);
     try {
-      await createOffer({
-        listingId,
-        amount: price,
-        status: "PENDING",
-        createdAt: new Date().toISOString(),
-        buyer: user,
-      }).unwrap();
+      await createOffer({ listingId, amount: price, buyerId: user.id }).unwrap();
       setAmount("");
     } catch (error) {
       setError(getErrorMessage(error));

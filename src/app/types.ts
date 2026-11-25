@@ -1,4 +1,4 @@
-// Cómo llegan los datos (de momento, de db.json)
+// Modelos que consume la interfaz de Rastro.
 
 export type ListingStatus = "AVAILABLE" | "RESERVED" | "SOLD";
 export type OfferStatus = "PENDING" | "ACCEPTED" | "REJECTED";
@@ -22,8 +22,8 @@ export type Listing = ListingSummary & {
   attributes: Record<string, string | number>;
 };
 
-// Un anuncio nuevo: todo menos el id, que lo pone json-server
-export type NewListing = Omit<Listing, "id">;
+// Datos que envía el formulario. Express completa los campos del anuncio.
+export type NewListing = Pick<Listing, "title" | "description" | "price" | "category" | "city"> & { sellerId: string };
 
 export type Offer = {
   id: string;
@@ -34,8 +34,8 @@ export type Offer = {
   buyer: { id: string; name: string };
 };
 
-// json-server guarda lo que le mandes: hay que mandarlo todo
-export type NewOffer = Omit<Offer, "id">;
+// Express resuelve el comprador y asigna la fecha y el estado.
+export type NewOffer = Pick<Offer, "listingId" | "amount"> & { buyerId: string };
 
 // Los filtros del listado. Todos opcionales
 export type ListingFilters = {

@@ -1,5 +1,19 @@
 # Entrega: la web de Rastro con React
 
+## Arranque local con Express
+
+Inicia la [API de Rastro](https://github.com/Manuelklk03/BootCamp-Ejercicio-api-rastro-mongodb-) con su MongoDB. Desde el repositorio de la web, instala las dependencias y arranca Vite:
+
+```powershell
+npm install
+Copy-Item .env.example .env
+npm run dev
+```
+
+Copia `.env.example` solo si todavía no tienes un `.env`. Para el desarrollo local, configura `VITE_API_URL=http://localhost:3000/api`. Si cambias ese valor, reinicia Vite.
+
+Las instrucciones y capturas de json-server corresponden a la versión [`v1-json-server`](https://github.com/Manuelklk03/BootCamp-entrega_react_rastro/tree/v1-json-server).
+
 ## Arranque local con json-server
 
 Instala las dependencias. Si es tu primera vez en este clon, copia `.env.example` a `.env`. El valor de `VITE_API_URL` debe ser `http://localhost:3001`.
