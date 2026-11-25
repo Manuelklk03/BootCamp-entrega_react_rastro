@@ -1,5 +1,10 @@
 # Entrega: la web de Rastro con React
 
+## Rastro en producción
+
+- [Web en Netlify](https://rastro-manuel.netlify.app)
+- [API en Render](https://api-rastro-manuel.onrender.com/api/health)
+
 ## Arranque local con Express
 
 Inicia la [API de Rastro](https://github.com/Manuelklk03/BootCamp-Ejercicio-api-rastro-mongodb-) con su MongoDB. Desde el repositorio de la web, instala las dependencias y arranca Vite:
